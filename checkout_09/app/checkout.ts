@@ -40,10 +40,6 @@ export class Checkout {
     this.itemRules = itemRules;
   }
 
-  splitAndSortInput = (input: string): string[] => {
-    return input.split('').sort();
-  }
-
   findItemRule = (itemName: string): ItemRule => {
     const itemRule = this.itemRules.find(itemRule => itemRule.name === itemName)
     if (!itemRule) {
