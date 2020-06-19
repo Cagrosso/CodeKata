@@ -1,0 +1,42 @@
+{
+  "name": "checkout_09",
+  "version": "1.0.0",
+  "description": "Kata09 Back to the Checkout",
+  "author": "Cameron Panagrosso",
+  "license": "MIT",
+  "scripts": {
+    "precompile": "rimraf app/**/*.js test/**/*.js",
+    "compile": "tsc",
+    "pretest": "rimraf app/**/*.js test/**/*.js",
+    "test": "yarn compile && nyc mocha && yarn pretest"
+  },
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.13",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "nyc": "^15.1.0",
+    "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "test/**"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ]
+  }
+}
