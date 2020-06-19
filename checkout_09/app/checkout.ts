@@ -44,14 +44,18 @@ export class Checkout {
     return input.split('').sort();
   }
 
+  findItemRule = (itemName: string): ItemRule => {
+    const itemRule = this.itemRules.find(itemRule => itemRule.name === itemName)
+    if (!itemRule) {
+      throw new Error(`No Pricing found for item '${itemName}'`)
+    }
+    return itemRule;
+  }
+
   updateTotal = () => {
     let newTotal = 0;
     this.cart.forEach((value, itemName) => {
-      const itemRule = this.itemRules.find(itemRule => itemRule.name === itemName)
-      if (!itemRule) {
-        throw new Error(`No Pricing found for item '${itemName}'`)
-      }
-      newTotal += itemRule.getPricePerItemCount(value.count);
+      newTotal += this.findItemRule(itemName).getPricePerItemCount(value.count);
     });
 
     this.total = newTotal;

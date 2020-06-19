@@ -49,6 +49,14 @@ describe('Back to Checkout', () => {
       expect(checkout.cart.get("A")).to.eql({ count: 3 });
     });
 
+    it('should find a rule for a given item', () => {
+      const itemName = "A";
+      const itemRule = new ItemRule(itemName, 0);
+      const checkout = new Checkout([itemRule]);
+
+      expect(checkout.findItemRule("A")).to.deep.equal(itemRule);
+    });
+
     it('should add items of different type to cart when scanned', () => {
       const checkout = new Checkout([new ItemRule("A", 0), new ItemRule("B", 0)]);
       checkout.scan("A");
